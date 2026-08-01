@@ -43,7 +43,7 @@ function drawScene1(svg, data) {
   const x = d3.scaleTime().domain(d3.extent(filteredData, d => d.date)).range([0, width]);
   const y = d3.scaleLinear().domain([0, d3.max(filteredData, d => d.doses_per_hundred) || 100]).range([height, 0]);
 
-  g.append("g").attr("transform", "translate(0,${height})").call(d3.axisBottom(x));
+  g.append("g").call(d3.axisBottom(x));
   g.append("g").call(d3.axisLeft(y));
 
   const line = d3.line().x(d => x(d.date)).y(d => y(d.doses_per_hundred));

@@ -35,7 +35,7 @@ function drawScene1(svg, data) {
   d3.select("#scene-description").text("Vaccine rollouts began slowly in early 2021.");
   const filteredData = data.filter(d => d.entity === "World" && d.date >= new Date("2021-01-01") && d.date <= new Date("2021-06-30"));
 
-  const margin = {top: 40, right: 30, bottom: 50, left: 60};
+  const margin = {top: 10, right: 10, bottom: 10, left: 10};
   const width = +svg.attr("width") - margin.left - margin.right;
   const height = +svg.attr("height") - margin.top - margin.bottom;
   const g = svg.append("g").attr("transform", "translate(${margin.left},${margin.top})");

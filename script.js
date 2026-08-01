@@ -32,7 +32,7 @@ function updateVisualization() {
 }
 
 function drawScene1(svg, data) {
-  d3.select("#scene-description").text("Vaccine rollouts began slowly in early 2021.");
+  d3.select("#scene-description").text("Vaccine rollouts began slowly in early 2021. Global data shown - y-axis is doses per hundred people.");
   const filteredData = data.filter(d => d.entity === "World" && d.date >= new Date("2021-01-01") && d.date <= new Date("2021-06-30"));
 
   const margin = {top: 50, right: 50, bottom: 50, left: 50};
@@ -48,6 +48,24 @@ function drawScene1(svg, data) {
 
   const line = d3.line().x(d => x(d.date)).y(d => y(d.doses_per_hundred));
   g.append("path").datum(filteredData).attr("fill","none").attr("stroke","steelblue").attr("stroke-width",3).attr("d",line);
+
+  const annotationData = [{
+    note: {
+      title: "Halfway point",
+      label: "Average of doses-per-hundred value @ 2021-01-01 and 2026-06-30."
+    },
+    x: x(new Date("2021-05-18")),
+    y: y(19.735668),
+    dx: -70,
+    dy: -30,
+    subject: {
+      radius: 4,
+      radiusPadding: 2
+    }
+  }];
+
+  const makeAnnotations = d3.annotation().type(d3.annotationCalloutCircle).annotations(annotationData);
+  g.append("g").attr("class","annotation-group").call(makeAnnotations);
 }
 
 function drawScene2(svg, data) {

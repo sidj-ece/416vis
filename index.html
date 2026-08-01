@@ -4,75 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COVID-19 Vaccination Narrative Viz</title>
-    
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
-
     <style>
-        body {
-            font-family: sans-serif;
-            margin: 40px;
-            text-align: center;
-        }
-        #chart-container {
-            margin-top: 20px;
-        }
+        body { font-family: sans-serif; margin: 30px; text-align: center; }
+        .chart-container { margin-top: 20px; display: inline-block; }
+        button { padding: 8px 16px; margin: 0 5px; cursor: pointer; }
+        .axis label { font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <h1>COVID-19 Vaccination Narrative Viz</h1>
-    <p>Martini Glass viz of global COVID-19 vaccination data.</p>
+    <h1>Global COVID-19 Vaccination Progress</h1>
+    <p id="scene-description">A martini-glass narrative viz showing data pertaining to global vaccination trends for COVID-19.</p>
 
     <div id="controls">
-        <button onclick="changeScene(1)">Scene 1</button>
-        <button onclick="changeScene(2)">Scene 2</button>
-        <button onclick="changeScene(3)">Scene 3</button>
+        <button onclick="changeScene(1)">Scene 1: Rollout</button>
+        <button onclick="changeScene(2)">Scene 2: Wealth Inequality == Vaccine Inequality</button>
+        <button onclick="changeScene(3)">Scene 3: Free Roam</button>
     </div>
 
-    <div id="chart-container">
-        <svg width="800" height="500"></svg>
+    <div class="chart-container">
+        <svg width="700" height="400"></svg>
     </div>
 
-    <script>
-        // Global state parameter
-        let currentScene = 1;
-
-        function changeScene(sceneNumber) {
-            currentScene = sceneNumber;
-            console.log("Switched to Scene:", currentScene);
-            
-            // TODO: Clear existing SVG contents and redraw based on currentScene
-            updateVisualization();
-        }
-
-        function updateVisualization() {
-            const svg = d3.select("svg");
-            svg.html("");
-
-            if (currentScene === 1) {
-                svg.append("text")
-                   .attr("x", 400)
-                   .attr("y", 250)
-                   .attr("text-anchor", "middle")
-                   .text("Scene 1: Initial Rollout");
-            } else if (currentScene === 2) {
-                svg.append("text")
-                   .attr("x", 400)
-                   .attr("y", 250)
-                   .attr("text-anchor", "middle")
-                   .text("Scene 2: Wealth Inequality in Vaccinations");
-            } else if (currentScene === 3) {
-                svg.append("text")
-                   .attr("x", 400)
-                   .attr("y", 250)
-                   .attr("text-anchor", "middle")
-                   .text("Scene 3: Country-by-Country Exploration");
-            }
-        }
-
-        updateVisualization();
-    </script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+    
+    <script src="script.js"></script>
 </body>
 </html>

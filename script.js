@@ -38,7 +38,7 @@ function drawScene1(svg, data) {
   const margin = {top: 10, right: 10, bottom: 10, left: 10};
   const width = +svg.attr("width") - margin.left - margin.right;
   const height = +svg.attr("height") - margin.top - margin.bottom;
-  const g = svg.append("g").attr("transform", "translate(${margin.left},${margin.top})");
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
   console.log("Height: ", height);
   console.log("Width: ", width);
 

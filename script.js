@@ -39,8 +39,8 @@ function drawScene1(svg, data) {
   const width = +svg.attr("width") - margin.left - margin.right;
   const height = +svg.attr("height") - margin.top - margin.bottom;
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-  console.log("Height: ", height);
-  console.log("Width: ", width);
+  // console.log("Height: ", height);
+  // console.log("Width: ", width);
 
   const x = d3.scaleTime().domain(d3.extent(filteredData, d => d.date)).range([0, width]);
   const y = d3.scaleLinear().domain([0, d3.max(filteredData, d => d.doses_per_hundred) || 100]).range([height, 0]);

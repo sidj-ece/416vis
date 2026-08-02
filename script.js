@@ -78,7 +78,7 @@ function drawScene2(svg, data) {
     "Lower-middle-income countries",
     "Upper-middle-income countries"
   ];
-  const filteredData = data.filter(targets.includes(d.entity) && d.date >= new Date("2021-01-01") && d.date <= new Date("2024-06-30"));
+  const filteredData = data.filter(d => targets.includes(d.entity) && d.date >= new Date("2021-01-01") && d.date <= new Date("2024-06-30"));
 
   const margin = {top: 50, right: 50, bottom: 50, left: 50};
   const width = +svg.attr("width") - margin.left - margin.right;

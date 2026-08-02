@@ -216,7 +216,6 @@ function plotUserCountry(countryName) {
     const errorMsg = document.getElementById("error-msg");
     errorMsg.innerText = "";
 
-    // Find matches case-insensitively in the dataset
     const countryData = data.filter(d => d.entity.toLowerCase() === countryName.toLowerCase());
 
     if (countryData.length === 0) {

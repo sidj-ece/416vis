@@ -26,6 +26,12 @@
         <svg width="700" height="400"></svg>
     </div>
 
+    <div id="scene3-controls" style="margin-bottom: 15px; display: none;">
+        <input type="text" id="country-input" placeholder="e.g., United States, Argentina, Germany" style="padding: 5px; width: 200px;">
+        <button onclick="handleCountrySearch()">Plot Country</button>
+        <span id="error-msg" style="color: red; font-size: 12px; margin-left: 10px;"></span>
+    </div>
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
     

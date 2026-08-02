@@ -150,6 +150,7 @@ function drawScene2(svg, data) {
         g.append("g")
          .attr("class", "annotation-group")
          .call(makeAnnotations);
+    }
 }
 
 function drawScene3(svg, data) {

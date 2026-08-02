@@ -71,7 +71,7 @@ function drawScene1(svg, data) {
 }
 
 function drawScene2(svg, data) {
-  d3.select("#scene-description").text("High-income countries were also highly-vaccinated, while low-income countries struggled to properly protect their citizens.");
+  d3.select("#scene-description").text("High-income countries were also highly-vaccinated, while low-income countries struggled to properly protect their citizens. Shown is data for high-income countries, upper-middle-income countries, lower-middle-income countries, and low-income countries.");
   const targets = [
     "High-income countries",
     "Low-income countries",
@@ -133,13 +133,24 @@ function drawScene2(svg, data) {
           {
             note: {
               title: "High-Income Milestone",
-              label: `Reached 100 doses/person on ${crossed100.date.toISOString().split('T')[0]}`,
+              label: `Reached 100 doses/ 100 people on ${crossed100.date.toISOString().split('T')[0]}`,
             },
             x: x(crossed100.date),
             y: y(crossed100.doses_per_hundred),
-            dx: -40,
-            dy: -40,
-            subject: { radius: 4, radiusPadding: 3 }
+            dx: 0,
+            dy: -100,
+            subject: { radius: 4, radiusPadding: 2 }
+          },
+          {
+            note: {
+              title: "Low-Income Failure",
+              label: "Low-income countries, as a whole, never broke 100 doses per 100 people."
+            },
+            x: x(new Date("2024-06-30")),
+            y: y(45.8065),
+            dx: -100,
+            dy: -20,
+            subject: { radius: 4, radiusPadding: 2 }
           }
         ];
 
@@ -154,5 +165,5 @@ function drawScene2(svg, data) {
 }
 
 function drawScene3(svg, data) {
-  svg.append("text").attr("x",50).attr("y",50).text("Scene 3 under construction. Check again later.");
+  d3.select("#scene-description").text("Now you can explore freely and see the trends across countries for yourself.");
 }

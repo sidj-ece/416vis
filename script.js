@@ -166,4 +166,83 @@ function drawScene2(svg, data) {
 
 function drawScene3(svg, data) {
   d3.select("#scene-description").text("Now you can explore freely and see the trends across countries for yourself.");
+  d3.select("#scene3-controls").style("display", "block");
+  
+  const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+  const width = +svg.attr("width") - margin.left - margin.right;
+  const height = +svg.attr("height") - margin.top - margin.bottom;
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  const x = d3.scaleTime().domain([new Date("2021-01-01"),new Date("2024-06-30")]).range([0, width]);
+  const y = d3.scaleLinear().domain([0, 420]).range([height, 0]);
+
+  g.append("g").attr("transform",`translate(0,${height})`).call(d3.axisBottom(x));
+  g.append("g").call(d3.axisLeft(y));
+  g.append("text").attr("transform", "rotate(-90)").attr("y", -45).attr("x", -height / 2)
+     .attr("text-anchor", "middle").style("font-size", "12px").text("Doses per 100 People");
+
+  const worldData = data.filter(d => d.entity === "World" && d.date >= new Date("2021-01-01") && d.date <= new Date("2024-06-30"));
+  const line = d3.line().x(d => x(d.date)).y(d => y(d.doses_per_hundred));
+  
+  g.append("path")
+     .datum(worldData)
+     .attr("fill", "none")
+     .attr("stroke", "#aaaaaa")
+     .attr("stroke-width", 2)
+     .attr("stroke-dasharray", "4,4")
+     .attr("d", line);
+
+  g.append("text")
+     .attr("x", width + 5)
+     .attr("y", y(worldData[worldData.length - 1]?.doses_per_hundred || 150))
+     .attr("alignment-baseline", "middle")
+     .style("font-size", "11px")
+     .style("fill", "#888")
+     .text("Global Average");
+
+  window.scene3Context = { g, data, x, y, line, width };
+  plotUserCountry("United States");
+}
+
+function handleCountrySearch() {
+    const inputVal = document.getElementById("country-input").value.trim();
+    if (inputVal) {
+        plotUserCountry(inputVal);
+    }
+}
+
+function plotUserCountry(countryName) {
+    const { g, data, x, y, line, width } = window.scene3Context;
+    const errorMsg = document.getElementById("error-msg");
+    errorMsg.innerText = "";
+
+    // Find matches case-insensitively in the dataset
+    const countryData = data.filter(d => d.entity.toLowerCase() === countryName.toLowerCase());
+
+    if (countryData.length === 0) {
+        errorMsg.innerText = `Country "${countryName}" not found. Try again.`;
+        return;
+    }
+
+    g.selectAll(".user-country-path").remove();
+    g.selectAll(".user-country-label").remove();
+
+    g.append("path")
+     .datum(countryData)
+     .attr("class", "user-country-path")
+     .attr("fill", "none")
+     .attr("stroke", "#1f77b4")
+     .attr("stroke-width", 3)
+     .attr("d", line);
+
+    const latestPoint = countryData[countryData.length - 1];
+    g.append("text")
+     .attr("class", "user-country-label")
+     .attr("x", width + 5)
+     .attr("y", y(latestPoint.doses_per_hundred))
+     .attr("alignment-baseline", "middle")
+     .style("font-size", "12px")
+     .style("font-weight", "bold")
+     .style("fill", "#1f77b4")
+     .text(latestPoint.entity);
 }

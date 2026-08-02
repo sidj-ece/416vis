@@ -148,7 +148,7 @@ function drawScene2(svg, data) {
             },
             x: x(new Date("2024-06-30")),
             y: y(45.8065),
-            dx: -50,
+            dx: -150,
             dy: -50,
             subject: { radius: 4, radiusPadding: 2 }
           }
@@ -168,7 +168,7 @@ function drawScene3(svg, data) {
   d3.select("#scene-description").text("Now you can explore freely and see the trends across countries for yourself.");
   d3.select("#scene3-controls").style("display", "block");
   
-  const margin = { top: 50, right: 70, bottom: 50, left: 70 };
+  const margin = { top: 50, right: 140, bottom: 50, left: 70 };
   const width = +svg.attr("width") - margin.left - margin.right;
   const height = +svg.attr("height") - margin.top - margin.bottom;
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);

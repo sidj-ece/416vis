@@ -35,7 +35,7 @@ function drawScene1(svg, data) {
   d3.select("#scene-description").text("Vaccine rollouts began slowly in early 2021. Global data shown.");
   const filteredData = data.filter(d => d.entity === "World" && d.date >= new Date("2021-01-01") && d.date <= new Date("2021-06-30"));
 
-  const margin = {top: 50, right: 50, bottom: 50, left: 50};
+  const margin = {top: 50, right: 50, bottom: 50, left: 70};
   const width = +svg.attr("width") - margin.left - margin.right;
   const height = +svg.attr("height") - margin.top - margin.bottom;
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
@@ -80,7 +80,7 @@ function drawScene2(svg, data) {
   ];
   const filteredData = data.filter(d => targets.includes(d.entity) && d.date >= new Date("2021-01-01") && d.date <= new Date("2024-06-30"));
 
-  const margin = {top: 50, right: 50, bottom: 50, left: 50};
+  const margin = {top: 50, right: 50, bottom: 50, left: 70};
   const width = +svg.attr("width") - margin.left - margin.right;
   const height = +svg.attr("height") - margin.top - margin.bottom;
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
@@ -133,12 +133,12 @@ function drawScene2(svg, data) {
           {
             note: {
               title: "High-Income Milestone",
-              label: `Reached 100 doses/ 100 people on ${crossed100.date.toISOString().split('T')[0]}`,
+              label: `Reached 100 doses per 100 people on ${crossed100.date.toISOString().split('T')[0]}`,
             },
             x: x(crossed100.date),
             y: y(crossed100.doses_per_hundred),
             dx: 0,
-            dy: -100,
+            dy: -80,
             subject: { radius: 4, radiusPadding: 2 }
           },
           {
@@ -148,8 +148,8 @@ function drawScene2(svg, data) {
             },
             x: x(new Date("2024-06-30")),
             y: y(45.8065),
-            dx: -100,
-            dy: -20,
+            dx: -50,
+            dy: -50,
             subject: { radius: 4, radiusPadding: 2 }
           }
         ];
@@ -168,7 +168,7 @@ function drawScene3(svg, data) {
   d3.select("#scene-description").text("Now you can explore freely and see the trends across countries for yourself.");
   d3.select("#scene3-controls").style("display", "block");
   
-  const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+  const margin = { top: 50, right: 70, bottom: 50, left: 70 };
   const width = +svg.attr("width") - margin.left - margin.right;
   const height = +svg.attr("height") - margin.top - margin.bottom;
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);

@@ -32,7 +32,7 @@ function updateVisualization() {
 }
 
 function drawScene1(svg, data) {
-  d3.select("#scene-description").text("Vaccine rollouts began slowly in early 2021. Global data shown.");
+  d3.select("#scene-description").text("Vaccine rollouts began slowly in early 2021. Global data shown. (Data from https://ourworldindata.org/covid-vaccinations)");
   const filteredData = data.filter(d => d.entity === "World" && d.date >= new Date("2021-01-01") && d.date <= new Date("2021-06-30"));
 
   const margin = {top: 50, right: 50, bottom: 50, left: 70};
